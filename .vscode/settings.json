@@ -1,0 +1,8 @@
+{
+  "python.pythonPath": ".venv/bin/python3.8",
+  "python.linting.mypyEnabled": true,
+  "python.linting.lintOnSave": true,
+  "python.testing.pytestPath": ".venv/bin/pytest",
+  "python.testing.pytestEnabled": true,
+  "python.testing.autoTestDiscoverOnSaveEnabled": true
+}
