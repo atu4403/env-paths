@@ -1,4 +1,4 @@
-from .main import *
+from .main import env_paths
 
 
 def data_dir(name: str, options: dict = {}) -> str:
