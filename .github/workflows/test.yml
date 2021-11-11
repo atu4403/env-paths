@@ -19,6 +19,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - uses: atu4403/poetry-setup-multi-platform@v1
       - run: |
+          python -m venv .venv --copies
           poetry install
           poetry run pytest
         shell: bash
