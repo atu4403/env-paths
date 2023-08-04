@@ -15,19 +15,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Rye on Linux/macOS
+      - name: Install Rust and Cargo (Linux/macOS)
         if: runner.os != 'Windows'
         run: |
-          curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          source $HOME/.cargo/env
 
-      - name: Install Rye on Windows
+      - name: Install Rust and Cargo (Windows)
         if: runner.os == 'Windows'
         run: |
-          curl -LO https://github.com/mitsuhiko/rye/releases/latest/download/rye-x86_64-windows.exe
-          echo 'A' | ./rye-x86_64-windows.exe
+          curl --proto '=https' --tlsv1.2 -sSf https://win.rustup.rs/x86_64 | out-file rustup-init.exe
+          ./rustup-init.exe -y
+
+      - name: Install Rye using Cargo
+        run: |
+          cargo install --git https://github.com/mitsuhiko/rye rye
 
       - name: Add Rye to PATH
-        run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Sync Rye
         run: rye sync
