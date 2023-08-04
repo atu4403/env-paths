@@ -23,7 +23,8 @@ jobs:
       - name: Install Rye on Windows
         if: runner.os == 'Windows'
         run: |
-          $env:RYE_INSTALL_OPTION="--yes"; curl -sSf https://rye-up.com/get | bash
+          curl -LO https://github.com/mitsuhiko/rye/releases/latest/download/rye-x86_64-windows.exe
+          ./rye-x86_64-windows.exe
 
       - name: Add Rye to PATH
         run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
