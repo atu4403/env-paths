@@ -21,11 +21,11 @@ jobs:
 
       - name: Add Rye to PATH (Linux/macOS)
         if: runner.os != 'Windows'
-        run: echo 'source "$HOME/.rye/env"' >> ~/.bashrc
+        run: echo 'source "$HOME/.rye/shims"' >> ~/.bashrc
 
       - name: Add Rye to PATH (Windows)
         if: runner.os == 'Windows'
-        run: echo 'source "$HOME/.rye/env"' >> $env:GITHUB_PATH
+        run: echo 'source "$HOME/.rye/shims"' >> $env:GITHUB_PATH
 
       - name: Sync Rye
         run: rye sync
