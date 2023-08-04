@@ -15,9 +15,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Rye
+      - name: Install Rye on Linux/macOS
+        if: runner.os != 'Windows'
         run: |
           curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+
+      - name: Install Rye on Windows
+        if: runner.os == 'Windows'
+        run: |
+          $env:RYE_INSTALL_OPTION="--yes"; curl -sSf https://rye-up.com/get | bash
 
       - name: Add Rye to PATH
         run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
