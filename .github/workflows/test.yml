@@ -34,6 +34,9 @@ jobs:
       - name: Add Rye to PATH
         run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
+      - name: Pin Python version with Rye
+        run: rye pin ${{ matrix.python-version }}
+
       - name: Sync Rye
         run: rye sync
 
