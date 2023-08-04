@@ -24,8 +24,8 @@ jobs:
       - name: Install Rust and Cargo (Windows)
         if: runner.os == 'Windows'
         run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://win.rustup.rs/x86_64 | out-file rustup-init.exe
-          ./rustup-init.exe -y
+          Invoke-WebRequest -Uri https://win.rustup.rs/x86_64 -OutFile rustup-init.exe
+          Start-Process -Wait -FilePath .\rustup-init.exe -ArgumentList '-y'
 
       - name: Install Rye using Cargo
         run: |
