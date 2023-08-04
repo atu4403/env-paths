@@ -24,7 +24,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           curl -LO https://github.com/mitsuhiko/rye/releases/latest/download/rye-x86_64-windows.exe
-          ./rye-x86_64-windows.exe
+          $env:RYE_INSTALL_OPTION="--yes"; ./rye-x86_64-windows.exe
 
       - name: Add Rye to PATH
         run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
