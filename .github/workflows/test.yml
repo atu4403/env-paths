@@ -19,13 +19,8 @@ jobs:
         run: |
           curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
 
-      - name: Add Rye to PATH (Linux/macOS)
-        if: runner.os != 'Windows'
-        run: echo 'source "$HOME/.rye/shims"' >> ~/.bashrc
-
-      - name: Add Rye to PATH (Windows)
-        if: runner.os == 'Windows'
-        run: echo 'source "$HOME/.rye/shims"' >> $env:GITHUB_PATH
+      - name: Add Rye to PATH
+        run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
 
       - name: Sync Rye
         run: rye sync
